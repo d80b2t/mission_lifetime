@@ -1,9 +1,10 @@
-Mission,Agency,Mission_Start_Year,Mission_End_Year,End_of_mission_cause,Cost_in_millions
-Hubble Space Telescope,ESA/NASA,1990,2027,Likely re-entry into Earth's atmosphere,16000.
-ISO,ESA,1995,1998,Liquid helium depletion,615. 
-Herschel,ESA,2009,2013,Liquid helium depletion,1100.
-Planck, ESA,2009,2013,Liquid helium depletion,700. 
-Compton GRO,NASA,1991,2000,Gyroscope failure and de-orbit,617.
-Kepler,NASA,2009-2018 &  Reaction Control System fuel depleted,600
-Spitzer Space Telescope,NASA,2003,2009,Liquid helium depletion,720 
-WISE,NASA,2009,2012,Hydrogen coolant depletion,320
+Mission,Agency,Mission_Start_Year,Mission_End_Year,End_of_mission_cause,Cost_in_millions,wavelength
+Hubble Space Telescope,ESA/NASA,1990,2027,Likely re-entry into Earth's atmosphere,16000.,3
+James Webb Space Telescope,ESA/NASA,2021,2024,unknown,10800.,4
+ESA ISO,ESA,1995,1998,Liquid helium depletion,615.,5 
+ESA Herschel,ESA,2009,2013,Liquid helium depletion,1100.,6
+ESA Planck, ESA,2009,2013,Liquid helium depletion,700.,7 
+NASA Compton GRO,NASA,1991,2000,Gyroscope failure and de-orbit,617.,0
+NASA Kepler,NASA,2009,2018,Reaction Control System fuel depleted,600,3
+Spitzer Space Telescope,NASA,2003,2009,Liquid helium depletion,720,5 
+NASA WISE,NASA,2009,2012,Hydrogen coolant depletion,320,5

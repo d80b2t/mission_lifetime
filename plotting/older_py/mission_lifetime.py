@@ -6,13 +6,19 @@ import matplotlib.pyplot as plt
 
 from matplotlib.patches import Rectangle
 from matplotlib         import colors as mcolors
+from matplotlib import colormaps
 
 from astropy.io import ascii
 from astropy.io import fits
 
 
+data = pd.read_csv('../data/mission_lifetime.dat')
+
+length_of_mission = data['Mission_End_Year']-data['Mission_Start_Year']
+cost              = data['Cost_in_millions'] 
+
 ## Setting up the plot
-fig, ax = plt.subplots(figsize=(5, 3), dpi=80, facecolor='w', edgecolor='k')
+fig, ax = plt.subplots(figsize=(10, 6), dpi=80, facecolor='w', edgecolor='k')
 
 ## Adjusting the Whitespace for the plots
 left   = 0.18   # the left side of the subplots of the figure
@@ -35,6 +41,9 @@ ticklabelsize   = labelsize
 majorticklength = 12
 minorticklength = 6
 
+# COLOR MAP
+colormaps['hsv']
+
 ## Some general links/tips on stylings::
 ##
 ## https://matplotlib.org/3.1.0/tutorials/introductory/customizing.html
@@ -44,21 +53,44 @@ minorticklength = 6
 
 
 ## Axes limits
-xmin =  1990
-xmax =  2025
-ymin =  0.0
-ymax = 38.0
+xmin =    1980.
+xmax =    2830.0
+ymin =     0.1
+ymax = 45.
 ax.set_xlim([xmin,xmax])
 ax.set_ylim([ymin, ymax])
+#ax.set_yscale('log')
+
+
+## 0 = Gamma Ray; 1 = Xray; 2 = Ultraviolet, 3 = optical, 4= nearinfrared, 5=midinfrared, 6=farinfrared, 7=submm
+
+##  https://stackoverflow.com/questions/76406816/how-to-set-broken-bar-order-after-grouping-the-dataframe
+
+##  https://www.geeksforgeeks.org/matplotlib-pyplot-broken_barh-in-python/
+##  Syntax: matplotlib.pyplot.broken_barh(xranges, yrange, *, data=None, **kwargs)
+'''
+Parameters:    
+
+xranges : sequence of tuples (xmin, xwidth)
+Each tuples gives the position(xmin) of the rectangle and it’s horizontal extension(xwidth) from that position.
+
+yranges : (ymin, ymax)
+In the above attribute, ymin gives the position of the rectangle and ymax gives the vertical extension from ymin.
+'''
+#plt.barh(cost, width=length_of_mission, height=20.2, left=data['Mission_Start_Year']) #, color=data['wavelength'])  
+plt.barh(length_of_mission, cost, left=data['Mission_Start_Year'])  
+
+##https://stackoverflow.com/questions/53531429/valueerror-invalid-rgba-argument-what-is-causing-this-error
+
 
 ## Axes labels
 ax.set_xlabel(r'Year')
-ax.set_ylabel(r'Cost')
+ax.set_ylabel(r'Cost in \$ millions')
 
 ## Axes style
 ax.tick_params(axis='both', which='major', labelsize=labelsize, top=True, right=True, direction='in', length=ticklength,   width=tickwidth)
 ax.tick_params(axis='both', which='minor', labelsize=labelsize, top=True, right=True, direction='in', length=ticklength/2, width=tickwidth)
 
 
-plt.savefig('matplotlib_template_temp.png', format='png')
+plt.savefig('mission_lifetime_temp.png', format='png')
 plt.close(fig)
